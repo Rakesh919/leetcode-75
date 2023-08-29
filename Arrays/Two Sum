@@ -6,24 +6,43 @@ Two sum Problem
 
 
 
+
+// BRUTE FORCE APPROACH
+
 class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    public int[] twoSum(int[] nums, int target) {
         
-   unordered_map<int ,int > map;
-   
-    for(int i=0;i<nums.size();i++){
-         int value =target-nums[i];
-
-         if(map.find(value)==map.end()){
-             map.insert(make_pair(nums[i],i));
-         }
-
-         else
-         return {map[value],i};
+        int arr[] = new int[2];
+        int n =nums.length;
+        for(int i=0;i<n;i++){
+            for(int j =i+1;j<n;j++){
+                if(nums[i]+nums[j]==target){
+                    arr[0] =i;
+                    arr[1] =j;
+                    break;
+                }
+            }
+        }
+        return arr;
     }
+}
 
-      
-        return {-1,-1};
+
+
+// OPTIMAL SOLUTION
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+      Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int value = target - nums[i];
+            if (map.containsKey(value)) {
+                return new int[] { map.get(value), i };
+            } else {
+                map.put(nums[i], i);
+            }
+        }
+        return new int[] {};
     }
-};
+}
