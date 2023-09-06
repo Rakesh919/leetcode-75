@@ -1,0 +1,40 @@
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Input: nums = [1,2,3,1]
+Output: true
+
+
+
+APPROACH :1
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        
+      Arrays.sort(nums);
+
+      for(int i=0;i<nums.length-1;i++){
+          if(nums[i]==nums[i+1])
+          return true;
+      }
+      return false;
+
+    }
+}
+
+APPROACH :2
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        
+         Set<Integer> set = new HashSet<Integer>();
+         for(int i=0;i<nums.length;i++){
+             set.add(nums[i]);
+         }
+
+         if(nums.length==set.size())
+         return false;
+
+         return true;
+
+    }
+}
